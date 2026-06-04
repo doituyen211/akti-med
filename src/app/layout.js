@@ -1,14 +1,16 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Mono } from "next/font/google";
+import Navbar from "../components/ui/Navbar";
+import Footer from "../components/ui/Footer";
+import NotificationProvider from "../components/ui/Notification";
+import { UserProvider } from "../components/ui/UserContext";
+
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceMono = Space_Mono({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  display: "swap",
 });
 
 export const metadata = {
@@ -18,11 +20,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
+    <UserProvider>
+      <NotificationProvider>
+        <Navbar />
+        <html lang="en" className={`${spaceMono.variable} h-full antialiased`}>
+          <body className="min-h-full flex flex-col">{children}</body>
+        </html>
+        <Footer />
+      </NotificationProvider>
+    </UserProvider>
   );
 }

@@ -1,172 +1,276 @@
+import React from "react";
+import Link from "next/link";
+
+/**
+ * Pricing page. Presents four subscription tiers with descriptions and
+ * action buttons. The design closely follows the original provided
+ * example while using semantic HTML and inline styles.
+ */
 export default function PricingPage() {
+  const plans = [
+    {
+      name: "Starter",
+      subtitle: "Cho phòng khám nhỏ",
+      price: "₫0",
+      period: "Mãi mãi miễn phí",
+      features: [
+        "50 ca khám/tháng",
+        "SOAP Note cơ bản",
+        "1 bác sĩ",
+        "Lưu trữ 7 ngày",
+      ],
+      button: (
+        <Link
+          href="/login"
+          style={{
+            border: "1px solid #e5e5e5",
+            borderRadius: 8,
+            padding: "8px",
+            display: "block",
+            textAlign: "center",
+            fontSize: 14,
+            color: "#0a0a0a",
+            textDecoration: "none",
+          }}
+        >
+          Bắt đầu
+        </Link>
+      ),
+    },
+    {
+      name: "Pro",
+      subtitle: "Cho phòng khám trung bình",
+      price: "₫1.2M",
+      period: "/tháng/bác sĩ",
+      features: [
+        "Không giới hạn ca khám",
+        "SOAP Note nâng cao",
+        "5 bác sĩ",
+        "Lưu trữ 1 năm",
+        "Agent đa tác vụ",
+      ],
+      featured: true,
+      button: (
+        <Link
+          href="/login"
+          style={{
+            background: "#fffaf0",
+            borderRadius: 8,
+            padding: "8px",
+            display: "block",
+            textAlign: "center",
+            fontSize: 14,
+            color: "#0a0a0a",
+            textDecoration: "none",
+          }}
+        >
+          Dùng thử 30 ngày
+        </Link>
+      ),
+    },
+    {
+      name: "Clinic",
+      subtitle: "Cho bệnh viện nhỏ",
+      price: "₫4.5M",
+      period: "/tháng",
+      features: [
+        "Không giới hạn ca khám",
+        "Tất cả tính năng Pro",
+        "20 bác sĩ",
+        "Tích hợp HIS/EMR",
+        "API riêng",
+      ],
+      button: (
+        <a
+          onClick={() => alert("Liên hệ sales@mediscribe.ai")}
+          style={{
+            border: "1px solid #e5e5e5",
+            borderRadius: 8,
+            padding: "8px",
+            display: "block",
+            textAlign: "center",
+            fontSize: 14,
+            color: "#0a0a0a",
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+        >
+          Liên hệ
+        </a>
+      ),
+    },
+    {
+      name: "Enterprise",
+      subtitle: "Cho bệnh viện lớn",
+      price: "Liên hệ",
+      period: "Tuỳ chỉnh theo nhu cầu",
+      features: [
+        "Không giới hạn người dùng",
+        "Triển khai on‑premise",
+        "SLA 99.9%",
+        "Hỗ trợ 24/7",
+        "Training tùy chỉnh",
+      ],
+      button: (
+        <a
+          onClick={() => alert("Liên hệ enterprise@mediscribe.ai")}
+          style={{
+            background: "#0a0a0a",
+            borderRadius: 8,
+            padding: "8px",
+            display: "block",
+            textAlign: "center",
+            fontSize: 14,
+            color: "#ffffff",
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+        >
+          Tư vấn ngay
+        </a>
+      ),
+    },
+  ];
   return (
-    <div class="page" id="page-pricing">
-      <div class="pricing">
-        <div class="section-label">Bảng giá</div>
-        <h1 style="font-family:var(--font-display);font-size:40px;font-weight:700;letter-spacing:-1px;margin-bottom:8px">
+    <div style={{ padding: "96px 32px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div
+          style={{
+            fontSize: 12,
+            fontWeight: 600,
+            letterSpacing: 1.5,
+            textTransform: "uppercase",
+            color: "#6a6a6a",
+            marginBottom: 16,
+          }}
+        >
+          Bảng giá
+        </div>
+        <h1
+          style={{
+            fontFamily: "Space Mono, monospace",
+            fontSize: 40,
+            fontWeight: 700,
+            letterSpacing: -1,
+            marginBottom: 8,
+          }}
+        >
           Đơn giản, minh bạch
         </h1>
-        <p style="font-size:16px;color:var(--muted);margin-bottom:0">
+        <p style={{ fontSize: 16, color: "#6a6a6a", marginBottom: 48 }}>
           Trả theo nhu cầu thực tế, không phí ẩn.
         </p>
-        <div class="pricing-grid">
-          <div class="pcard">
-            <h3>Starter</h3>
-            <p style="font-size:13px;color:var(--muted)">Cho phòng khám nhỏ</p>
-            <div class="price">
-              <sup>₫</sup>0
-            </div>
-            <div class="period">Mãi mãi miễn phí</div>
-            <ul>
-              <li>
-                <i class="ti ti-check"></i>50 ca khám/tháng
-              </li>
-              <li>
-                <i class="ti ti-check"></i>SOAP Note cơ bản
-              </li>
-              <li>
-                <i class="ti ti-check"></i>1 bác sĩ
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Lưu trữ 7 ngày
-              </li>
-            </ul>
-            <button
-              class="btn btn-secondary"
-              style="width:100%"
-              onclick="navigate('login')"
-            >
-              Bắt đầu
-            </button>
-          </div>
-          <div class="pcard pcard-featured">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gap: 16,
+          }}
+        >
+          {plans.map((plan, idx) => (
             <div
-              class="badge"
-              style="background:var(--mint);color:var(--teal);margin-bottom:12px"
+              key={idx}
+              style={{
+                background: plan.featured ? "#1a3a3a" : "#fffaf0",
+                color: plan.featured ? "#ffffff" : "#0a0a0a",
+                border: "1px solid",
+                borderColor: plan.featured ? "#1a3a3a" : "#e5e5e5",
+                borderRadius: 16,
+                padding: 32,
+                position: "relative",
+              }}
             >
-              Phổ biến nhất
+              {plan.featured && (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: -12,
+                    left: 20,
+                    background: "#a4d4c5",
+                    color: "#1a3a3a",
+                    padding: "4px 10px",
+                    borderRadius: 9999,
+                    fontSize: 12,
+                    fontWeight: 600,
+                  }}
+                >
+                  Phổ biến nhất
+                </span>
+              )}
+              <h3
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 18,
+                  fontWeight: 700,
+                  marginBottom: 4,
+                }}
+              >
+                {plan.name}
+              </h3>
+              <p
+                style={{
+                  fontSize: 13,
+                  color: plan.featured ? "rgba(255,255,255,.6)" : "#6a6a6a",
+                  marginBottom: 0,
+                }}
+              >
+                {plan.subtitle}
+              </p>
+              <div
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 40,
+                  fontWeight: 700,
+                  letterSpacing: -1,
+                  margin: "16px 0 4px",
+                }}
+              >
+                {plan.price}
+              </div>
+              <div
+                style={{
+                  fontSize: 13,
+                  color: plan.featured ? "rgba(255,255,255,.6)" : "#6a6a6a",
+                  marginBottom: 20,
+                }}
+              >
+                {plan.period}
+              </div>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  marginBottom: 24,
+                }}
+              >
+                {plan.features.map((f, i) => (
+                  <li
+                    key={i}
+                    style={{
+                      fontSize: 14,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                    }}
+                  >
+                    <span
+                      style={{ color: plan.featured ? "#a4d4c5" : "#22c55e" }}
+                    >
+                      ✓
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              {plan.button}
             </div>
-            <h3 style="color:#fff">Pro</h3>
-            <p style="font-size:13px;color:rgba(255,255,255,.6)">
-              Cho phòng khám trung bình
-            </p>
-            <div class="price" style="color:#fff">
-              <sup>₫</sup>1.2M
-            </div>
-            <div class="period">/tháng/bác sĩ</div>
-            <ul>
-              <li>
-                <i class="ti ti-check"></i>Không giới hạn ca khám
-              </li>
-              <li>
-                <i class="ti ti-check"></i>SOAP Note nâng cao
-              </li>
-              <li>
-                <i class="ti ti-check"></i>5 bác sĩ
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Lưu trữ 1 năm
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Agent đa tác vụ
-              </li>
-            </ul>
-            <button
-              class="btn btn-primary"
-              style="width:100%;background:var(--cream);color:var(--ink)"
-              onclick="navigate('login')"
-            >
-              Dùng thử 30 ngày
-            </button>
-          </div>
-          <div class="pcard">
-            <h3>Clinic</h3>
-            <p style="font-size:13px;color:var(--muted)">Cho bệnh viện nhỏ</p>
-            <div class="price">
-              <sup>₫</sup>4.5M
-            </div>
-            <div class="period">/tháng</div>
-            <ul>
-              <li>
-                <i class="ti ti-check"></i>Không giới hạn ca khám
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Tất cả tính năng Pro
-              </li>
-              <li>
-                <i class="ti ti-check"></i>20 bác sĩ
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Tích hợp HIS/EMR
-              </li>
-              <li>
-                <i class="ti ti-check"></i>API riêng
-              </li>
-            </ul>
-            <button
-              class="btn btn-secondary"
-              style="width:100%"
-              onclick="showNotif('Liên hệ sales@mediscribe.ai')"
-            >
-              Liên hệ
-            </button>
-          </div>
-          <div class="pcard">
-            <h3>Enterprise</h3>
-            <p style="font-size:13px;color:var(--muted)">Cho bệnh viện lớn</p>
-            <div class="price" style="font-size:28px">
-              Liên hệ
-            </div>
-            <div class="period">Tuỳ chỉnh theo nhu cầu</div>
-            <ul>
-              <li>
-                <i class="ti ti-check"></i>Không giới hạn người dùng
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Triển khai on-premise
-              </li>
-              <li>
-                <i class="ti ti-check"></i>SLA 99.9%
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Hỗ trợ 24/7
-              </li>
-              <li>
-                <i class="ti ti-check"></i>Training tùy chỉnh
-              </li>
-            </ul>
-            <button
-              class="btn btn-primary"
-              style="width:100%"
-              onclick="showNotif('Liên hệ enterprise@mediscribe.ai')"
-            >
-              Tư vấn ngay
-            </button>
-          </div>
+          ))}
         </div>
       </div>
-      <footer style="margin-top:96px">
-        <div
-          class="footer-copy"
-          style="max-width:1280px;margin:0 auto;padding:24px 32px;border-top:1px solid var(--hairline)"
-        >
-          <p>© 2025 MediScribeAI</p>
-          <div style="display:flex;gap:16px">
-            <span
-              style="cursor:pointer;font-size:13px;color:var(--muted)"
-              onclick="navigate('terms')"
-            >
-              Điều khoản
-            </span>
-            <span
-              style="cursor:pointer;font-size:13px;color:var(--muted)"
-              onclick="navigate('privacy')"
-            >
-              Riêng tư
-            </span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

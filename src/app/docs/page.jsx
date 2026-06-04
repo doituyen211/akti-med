@@ -1,185 +1,447 @@
+"use client";
+import React, { useState } from "react";
+
+/**
+ * Documentation page. Provides a side navigation with multiple sections.
+ * Clicking a navigation item displays the corresponding content. Sections
+ * include a quick start, API reference, SOAP schema, agent tools and
+ * webhook description.
+ */
 export default function DocsPage() {
+  const [section, setSection] = useState("start");
   return (
-    <div class="page" id="page-docs">
-      <div class="docs-grid">
-        <div class="docs-nav">
-          <div class="section-label">Tài liệu</div>
+    <div style={{ padding: "48px 32px" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "200px 1fr",
+          gap: 40,
+          maxWidth: 1100,
+          margin: "0 auto",
+        }}
+      >
+        <nav style={{ position: "sticky", top: 80, alignSelf: "flex-start" }}>
           <div
-            class="docs-nav-item active"
-            onclick="selectDocSection(this,'doc-start')"
+            style={{
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: 1.5,
+              textTransform: "uppercase",
+              color: "#6a6a6a",
+              marginBottom: 16,
+            }}
           >
-            Bắt đầu
+            Tài liệu
           </div>
-          <div class="docs-nav-item" onclick="selectDocSection(this,'doc-api')">
-            API Reference
-          </div>
-          <div
-            class="docs-nav-item"
-            onclick="selectDocSection(this,'doc-soap')"
-          >
-            SOAP Note
-          </div>
-          <div
-            class="docs-nav-item"
-            onclick="selectDocSection(this,'doc-agent')"
-          >
-            Agent Tools
-          </div>
-          <div
-            class="docs-nav-item"
-            onclick="selectDocSection(this,'doc-webhook')"
-          >
-            Webhooks
-          </div>
-        </div>
+          {[
+            { id: "start", label: "Bắt đầu" },
+            { id: "api", label: "API Reference" },
+            { id: "soap", label: "SOAP Note" },
+            { id: "agent", label: "Agent Tools" },
+            { id: "webhook", label: "Webhooks" },
+          ].map((item) => (
+            <div
+              key={item.id}
+              onClick={() => setSection(item.id)}
+              style={{
+                cursor: "pointer",
+                padding: "6px 10px",
+                borderRadius: 8,
+                marginBottom: 4,
+                fontSize: 14,
+                color: section === item.id ? "#0a0a0a" : "#6a6a6a",
+                background: section === item.id ? "#f5f0e0" : "transparent",
+              }}
+            >
+              {item.label}
+            </div>
+          ))}
+        </nav>
         <div>
-          <div id="doc-start">
-            <h1 style="font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-1px;margin-bottom:8px">
-              Bắt đầu nhanh
-            </h1>
-            <p style="font-size:15px;color:var(--muted);margin-bottom:32px">
-              Tích hợp MediScribeAI vào hệ thống của bạn trong 10 phút.
-            </p>
-            <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:12px">
-              1. Lấy API Key
-            </h2>
-            <p style="font-size:15px;color:var(--body);line-height:1.7;margin-bottom:16px">
-              Sau khi đăng ký, vào Dashboard → Settings → API Keys để tạo key.
-            </p>
-            <div style="background:var(--dark);border-radius:var(--r-md);padding:20px;margin-bottom:24px;font-family:monospace;font-size:13px;color:#a0d4c5;overflow-x:auto">
-              <span style="color:var(--muted-soft)"># Cài đặt SDK</span>
-              <br />
-              npm install @mediscribe/sdk
-              <br />
-              <br />
-              <span style="color:var(--muted-soft)"># Hoặc dùng curl</span>
-              <br />
-              curl https://api.mediscribe.ai/v1/sessions \<br />
-              &nbsp;&nbsp;-H "Authorization: Bearer YOUR_API_KEY"
+          {section === "start" && (
+            <div>
+              <h1
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 36,
+                  fontWeight: 700,
+                  letterSpacing: -1,
+                  marginBottom: 8,
+                }}
+              >
+                Bắt đầu nhanh
+              </h1>
+              <p style={{ fontSize: 15, color: "#6a6a6a", marginBottom: 32 }}>
+                Tích hợp MediScribeAI vào hệ thống của bạn trong 10 phút.
+              </p>
+              <h2
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 22,
+                  fontWeight: 700,
+                  marginBottom: 12,
+                }}
+              >
+                1. Lấy API Key
+              </h2>
+              <p
+                style={{
+                  fontSize: 15,
+                  color: "#3a3a3a",
+                  lineHeight: 1.7,
+                  marginBottom: 16,
+                }}
+              >
+                Sau khi đăng ký, vào Dashboard → Settings → API Keys để tạo key.
+              </p>
+              <div
+                style={{
+                  background: "#0a1a1a",
+                  borderRadius: 8,
+                  padding: 20,
+                  marginBottom: 24,
+                  fontFamily: "monospace",
+                  fontSize: 13,
+                  color: "#a0d4c5",
+                  overflowX: "auto",
+                }}
+              >
+                <span style={{ color: "#6a6a6a" }}># Cài đặt SDK</span>
+                <br />
+                npm install @mediscribe/sdk
+                <br />
+                <br />
+                <span style={{ color: "#6a6a6a" }}># Hoặc dùng curl</span>
+                <br />
+                curl https://api.mediscribe.ai/v1/sessions
+                <br />
+                &nbsp;&nbsp;-H "Authorization: Bearer YOUR_API_KEY"
+              </div>
+              <h2
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 22,
+                  fontWeight: 700,
+                  marginBottom: 12,
+                }}
+              >
+                2. Tạo phiên ghi âm
+              </h2>
+              <div
+                style={{
+                  background: "#0a1a1a",
+                  borderRadius: 8,
+                  padding: 20,
+                  marginBottom: 24,
+                  fontFamily: "monospace",
+                  fontSize: 13,
+                  color: "#a0d4c5",
+                  overflowX: "auto",
+                }}
+              >
+                POST /v1/sessions
+                <br />
+                {"{"}
+                <br />
+                &nbsp;&nbsp;"patient_id": "pt_123",
+                <br />
+                &nbsp;&nbsp;"doctor_id": "dr_456",
+                <br />
+                &nbsp;&nbsp;"language": "vi"
+                <br />
+                {" }"}
+              </div>
             </div>
-            <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:12px">
-              2. Tạo phiên ghi âm
-            </h2>
-            <div style="background:var(--dark);border-radius:var(--r-md);padding:20px;margin-bottom:24px;font-family:monospace;font-size:13px;color:#a0d4c5;overflow-x:auto">
-              POST /v1/sessions
-              <br />
-              <br />
-              &nbsp;&nbsp;"patient_id": "pt_123",
-              <br />
-              &nbsp;&nbsp;"doctor_id": "dr_456",
-              <br />
-              &nbsp;&nbsp;"language": "vi"
-              <br />
-            </div>
-          </div>
-          <div id="doc-api" class="hidden">
-            <h1 style="font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-1px;margin-bottom:8px">
-              API Reference
-            </h1>
-            <p style="font-size:15px;color:var(--muted);margin-bottom:32px">
-              Base URL:{" "}
-              <code style="background:var(--cream-card);padding:2px 8px;border-radius:var(--r-sm)">
-                https://api.mediscribe.ai/v1
-              </code>
-            </p>
-            <div style="display:flex;flex-direction:column;gap:12px">
-              <div style="border:1px solid var(--hairline);border-radius:var(--r-md);padding:16px">
-                <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-                  <span class="badge badge-success">POST</span>
-                  <code style="font-size:14px">/sessions</code>
+          )}
+          {section === "api" && (
+            <div>
+              <h1
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 36,
+                  fontWeight: 700,
+                  letterSpacing: -1,
+                  marginBottom: 8,
+                }}
+              >
+                API Reference
+              </h1>
+              <p style={{ fontSize: 15, color: "#6a6a6a", marginBottom: 32 }}>
+                Base URL:{" "}
+                <code
+                  style={{
+                    background: "#f5f0e0",
+                    padding: "2px 8px",
+                    borderRadius: 6,
+                  }}
+                >
+                  https://api.mediscribe.ai/v1
+                </code>
+              </p>
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 12 }}
+              >
+                <div
+                  style={{
+                    border: "1px solid #e5e5e5",
+                    borderRadius: 8,
+                    padding: 16,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      alignItems: "center",
+                      marginBottom: 8,
+                    }}
+                  >
+                    <span
+                      style={{
+                        background: "rgba(34,197,94,.1)",
+                        color: "#15803d",
+                        padding: "2px 6px",
+                        borderRadius: 9999,
+                        fontSize: 12,
+                        fontWeight: 600,
+                      }}
+                    >
+                      POST
+                    </span>
+                    <code style={{ fontSize: 14 }}>/sessions</code>
+                  </div>
+                  <p style={{ fontSize: 13, color: "#6a6a6a" }}>
+                    Tạo phiên ghi âm mới
+                  </p>
                 </div>
-                <p style="font-size:13px;color:var(--muted)">
-                  Tạo phiên ghi âm mới
-                </p>
-              </div>
-              <div style="border:1px solid var(--hairline);border-radius:var(--r-md);padding:16px">
-                <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-                  <span class="badge badge-info">GET</span>
-                  <code style="font-size:14px">
-                    /sessions/{"{id}"}/transcript
-                  </code>
+                <div
+                  style={{
+                    border: "1px solid #e5e5e5",
+                    borderRadius: 8,
+                    padding: 16,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      alignItems: "center",
+                      marginBottom: 8,
+                    }}
+                  >
+                    <span
+                      style={{
+                        background: "rgba(59,130,246,.1)",
+                        color: "#1d4ed8",
+                        padding: "2px 6px",
+                        borderRadius: 9999,
+                        fontSize: 12,
+                        fontWeight: 600,
+                      }}
+                    >
+                      GET
+                    </span>
+                    <code style={{ fontSize: 14 }}>
+                      /sessions/&#123;id&#125;/transcript
+                    </code>
+                  </div>
+                  <p style={{ fontSize: 13, color: "#6a6a6a" }}>
+                    Lấy transcript của phiên
+                  </p>
                 </div>
-                <p style="font-size:13px;color:var(--muted)">
-                  Lấy transcript của phiên
-                </p>
-              </div>
-              <div style="border:1px solid var(--hairline);border-radius:var(--r-md);padding:16px">
-                <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-                  <span class="badge badge-success">POST</span>
-                  <code style="font-size:14px">/sessions/{"{id}"}/soap</code>
+                <div
+                  style={{
+                    border: "1px solid #e5e5e5",
+                    borderRadius: 8,
+                    padding: 16,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      alignItems: "center",
+                      marginBottom: 8,
+                    }}
+                  >
+                    <span
+                      style={{
+                        background: "rgba(34,197,94,.1)",
+                        color: "#15803d",
+                        padding: "2px 6px",
+                        borderRadius: 9999,
+                        fontSize: 12,
+                        fontWeight: 600,
+                      }}
+                    >
+                      POST
+                    </span>
+                    <code style={{ fontSize: 14 }}>
+                      /sessions/&#123;id&#125;/soap
+                    </code>
+                  </div>
+                  <p style={{ fontSize: 13, color: "#6a6a6a" }}>
+                    Tạo SOAP Note từ transcript
+                  </p>
                 </div>
-                <p style="font-size:13px;color:var(--muted)">
-                  Tạo SOAP Note từ transcript
-                </p>
               </div>
             </div>
-          </div>
-          <div id="doc-soap" class="hidden">
-            <h1 style="font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-1px;margin-bottom:8px">
-              SOAP Note Schema
-            </h1>
-            <div style="background:var(--dark);border-radius:var(--r-md);padding:20px;font-family:monospace;font-size:12px;color:#a0d4c5">
-              <br />
-              &nbsp;&nbsp;"subjective": "string",
-              <br />
-              &nbsp;&nbsp;"objective": <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;"vitals": "temp":37.5,"bp":"120/80",
-              <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;"exam": "string"
-              <br />
-              &nbsp;&nbsp;,
-              <br />
-              &nbsp;&nbsp;"assessment": "string",
-              <br />
-              &nbsp;&nbsp;"plan": "string",
-              <br />
-              &nbsp;&nbsp;"icd10": ["J06.9"],
-              <br />
-              &nbsp;&nbsp;"created_at": "ISO8601"
-              <br />
+          )}
+          {section === "soap" && (
+            <div>
+              <h1
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 36,
+                  fontWeight: 700,
+                  letterSpacing: -1,
+                  marginBottom: 8,
+                }}
+              >
+                SOAP Note Schema
+              </h1>
+              <div
+                style={{
+                  background: "#0a1a1a",
+                  borderRadius: 8,
+                  padding: 20,
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                  color: "#a0d4c5",
+                }}
+              >
+                {"{"}
+                <br />
+                &nbsp;&nbsp;"subjective": "string",
+                <br />
+                &nbsp;&nbsp;"objective":
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;"vitals": "temp":37.5,"bp":"120/80",
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;"exam": "string"
+                <br />
+                &nbsp;&nbsp;,
+                <br />
+                &nbsp;&nbsp;"assessment": "string",
+                <br />
+                &nbsp;&nbsp;"plan": "string",
+                <br />
+                &nbsp;&nbsp;"icd10": ["J06.9"],
+                <br />
+                &nbsp;&nbsp;"created_at": "ISO8601"
+                <br />
+              </div>
             </div>
-          </div>
-          <div id="doc-agent" class="hidden">
-            <h1 style="font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-1px;margin-bottom:8px">
-              Agent Tools
-            </h1>
-            <p style="font-size:15px;color:var(--body);line-height:1.7">
-              Agent hỗ trợ các lệnh tự nhiên bằng tiếng Việt:
-            </p>
-            <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
-              <div style="padding:12px 16px;background:var(--cream-card);border-radius:var(--r-md);font-size:14px">
-                <b>"Tìm lịch sử bệnh án"</b> → Truy xuất hồ sơ bệnh nhân từ EMR
-              </div>
-              <div style="padding:12px 16px;background:var(--cream-card);border-radius:var(--r-md);font-size:14px">
-                <b>"Kiểm tra BHYT"</b> → Tra cứu thông tin bảo hiểm y tế
-              </div>
-              <div style="padding:12px 16px;background:var(--cream-card);border-radius:var(--r-md);font-size:14px">
-                <b>"Đặt lịch xét nghiệm X-quang"</b> → Tạo yêu cầu xét nghiệm
-              </div>
-              <div style="padding:12px 16px;background:var(--cream-card);border-radius:var(--r-md);font-size:14px">
-                <b>"In giấy ra viện"</b> → Tạo và gửi lệnh in tài liệu
+          )}
+          {section === "agent" && (
+            <div>
+              <h1
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 36,
+                  fontWeight: 700,
+                  letterSpacing: -1,
+                  marginBottom: 8,
+                }}
+              >
+                Agent Tools
+              </h1>
+              <p style={{ fontSize: 15, color: "#3a3a3a", lineHeight: 1.7 }}>
+                Agent hỗ trợ các lệnh tự nhiên bằng tiếng Việt:
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  marginTop: 16,
+                }}
+              >
+                <div
+                  style={{
+                    padding: "12px 16px",
+                    background: "#f5f0e0",
+                    borderRadius: 8,
+                    fontSize: 14,
+                  }}
+                >
+                  <b>"Tìm lịch sử bệnh án"</b> → Truy xuất hồ sơ bệnh nhân từ
+                  EMR
+                </div>
+                <div
+                  style={{
+                    padding: "12px 16px",
+                    background: "#f5f0e0",
+                    borderRadius: 8,
+                    fontSize: 14,
+                  }}
+                >
+                  <b>"Kiểm tra BHYT"</b> → Tra cứu thông tin bảo hiểm y tế
+                </div>
+                <div
+                  style={{
+                    padding: "12px 16px",
+                    background: "#f5f0e0",
+                    borderRadius: 8,
+                    fontSize: 14,
+                  }}
+                >
+                  <b>"Đặt lịch xét nghiệm X‑quang"</b> → Tạo yêu cầu xét nghiệm
+                </div>
+                <div
+                  style={{
+                    padding: "12px 16px",
+                    background: "#f5f0e0",
+                    borderRadius: 8,
+                    fontSize: 14,
+                  }}
+                >
+                  <b>"In giấy ra viện"</b> → Tạo và gửi lệnh in tài liệu
+                </div>
               </div>
             </div>
-          </div>
-          <div id="doc-webhook" class="hidden">
-            <h1 style="font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-1px;margin-bottom:8px">
-              Webhooks
-            </h1>
-            <p style="font-size:15px;color:var(--body);line-height:1.7">
-              Nhận thông báo realtime khi SOAP Note hoàn thành.
-            </p>
-            <div style="background:var(--dark);border-radius:var(--r-md);padding:20px;margin-top:16px;font-family:monospace;font-size:12px;color:#a0d4c5">
-              POST your-endpoint
-              <br />
-              <br />
-              &nbsp;&nbsp;"event": "soap.completed",
-              <br />
-              &nbsp;&nbsp;"session_id": "sess_xxx",
-              <br />
-              &nbsp;&nbsp;"soap": {"{...}"}
-              <br />
+          )}
+          {section === "webhook" && (
+            <div>
+              <h1
+                style={{
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: 36,
+                  fontWeight: 700,
+                  letterSpacing: -1,
+                  marginBottom: 8,
+                }}
+              >
+                Webhooks
+              </h1>
+              <p style={{ fontSize: 15, color: "#3a3a3a", lineHeight: 1.7 }}>
+                Nhận thông báo realtime khi SOAP Note hoàn thành.
+              </p>
+              <div
+                style={{
+                  background: "#0a1a1a",
+                  borderRadius: 8,
+                  padding: 20,
+                  marginTop: 16,
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                  color: "#a0d4c5",
+                }}
+              >
+                POST your‑endpoint
+                <br />
+                {"{"}
+                <br />
+                &nbsp;&nbsp;"event": "soap.completed",
+                <br />
+                &nbsp;&nbsp;"session_id": "sess_xxx",
+                <br />
+                &nbsp;&nbsp;"soap": {"{...}"}
+                <br />
+                {" }"}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

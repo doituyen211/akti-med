@@ -1,23 +1,15 @@
-import { NextResponse } from 'next/server'
-
-export function middleware(request) {
-  // Lấy token từ cookies (bạn sẽ set cookie khi login thành công)
-  // const token = request.cookies.get('token')?.value
-
-  // // Nếu truy cập vào /dashboard mà chưa có token -> Đẩy về /login
-  // if (request.nextUrl.pathname.startsWith('/dashboard') && !token) {
-  //   return NextResponse.redirect(new URL('/login', request.url))
-  // }
-
-  // // Nếu đã có token mà cố vào /login -> Đẩy vào /dashboard
-  // if (request.nextUrl.pathname.startsWith('/login') && token) {
-  //   return NextResponse.redirect(new URL('/dashboard', request.url))
-  // }
-
-  // return NextResponse.next()
-  
+/**
+ * Next.js middleware. In a real application this would protect routes
+ * that require authentication by checking cookies or session tokens.
+ * Since this demo has no backend, the middleware is a no‑op and simply
+ * allows all requests to proceed.
+ */
+export function middleware() {
+  // Intentionally left blank: authentication should be handled client side
+  // for this demo. See lib/api.js for stubbed API helpers.
+  return new Response(null, { status: 200 });
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/login'],
-}
+  matcher: ["/dashboard/:path*"],
+};
