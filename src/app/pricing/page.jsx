@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 
@@ -23,7 +24,7 @@ export default function PricingPage() {
         <Link
           href="/login"
           style={{
-            border: "1px solid #e5e5e5",
+            border: "1px solid #b6acac",
             borderRadius: 8,
             padding: "8px",
             display: "block",
@@ -84,7 +85,7 @@ export default function PricingPage() {
         <a
           onClick={() => alert("Liên hệ sales@mediscribe.ai")}
           style={{
-            border: "1px solid #e5e5e5",
+            border: "1px solid #b6acac",
             borderRadius: 8,
             padding: "8px",
             display: "block",
@@ -174,7 +175,7 @@ export default function PricingPage() {
                 background: plan.featured ? "#1a3a3a" : "#fffaf0",
                 color: plan.featured ? "#ffffff" : "#0a0a0a",
                 border: "1px solid",
-                borderColor: plan.featured ? "#1a3a3a" : "#e5e5e5",
+                borderColor: plan.featured ? "#1a3a3a" : "#b6acac",
                 borderRadius: 16,
                 padding: 32,
                 position: "relative",

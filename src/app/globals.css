@@ -136,6 +136,6 @@ body {
 }
  
 /* ─── Scrollbar styling ─── */
-::-webkit-scrollbar       { width: 6px; height: 6px; }
+/* ::-webkit-scrollbar       { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-hairline-soft); }
-::-webkit-scrollbar-thumb { background: var(--color-hairline); border-radius: var(--radius-pill); }
+::-webkit-scrollbar-thumb { background: var(--color-hairline); border-radius: var(--radius-pill); } */
