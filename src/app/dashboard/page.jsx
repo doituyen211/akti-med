@@ -8,12 +8,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { useNotifStore } from "@/store";
+import { useNotifStore } from "../store";
 import Sidebar from "@/components/dashboard/Sidebar";
 import StatsGrid from "@/components/dashboard/StatsGrid";
 import EncounterTable from "@/components/dashboard/EncounterTable";
 import ConsentModal from "@/components/shared/ConsentModal";
-import Badge from "@/components/shared/Badge";
+import Badge from "../../components/shared/Bagde";
 import { DEMO_ENCOUNTERS } from "@/lib/constants";
 
 export default function DashboardPage() {

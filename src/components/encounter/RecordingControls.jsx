@@ -5,8 +5,8 @@
 "use client";
 
 import { useRef } from "react";
-import { useEncounterStore } from "@/store";
-import { useRecording } from "@/hooks/useRecording";
+import { useEncounterStore } from "../../app/store";
+import { useRecording } from "../../hooks/useRecording";
 
 export default function RecordingControls({ encounterId }) {
   const fileInputRef = useRef(null);

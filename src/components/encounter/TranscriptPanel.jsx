@@ -6,7 +6,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useEncounterStore } from "@/store";
+import { useEncounterStore } from "../../app/store";
 
 export default function TranscriptPanel() {
   const { transcriptSegments, recordingStatus } = useEncounterStore();

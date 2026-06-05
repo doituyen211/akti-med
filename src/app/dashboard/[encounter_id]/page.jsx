@@ -10,8 +10,8 @@ import { useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
-import { useEncounterStore } from "@/store";
-import { useNotifStore } from "@/store";
+import { useEncounterStore } from "../../store";
+import { useNotifStore } from "../../store";
 import { useRecording } from "@/hooks/useRecording";
 import { finalizeSoapNote } from "@/lib/api";
 
@@ -20,7 +20,7 @@ import RecordingControls from "@/components/encounter/RecordingControls";
 import SOAPEditor from "@/components/encounter/SOAPEditor";
 import LiveCommandBox from "@/components/encounter/LiveCommandBox";
 import EmergencyToggle from "@/components/encounter/EmergencyToggle";
-import Badge from "@/components/shared/Badge";
+import Badge from "../../../components/shared/Bagde";
 
 // Map encounter_id → demo patient name (thay bằng API call thật sau)
 const DEMO_PATIENT_MAP = {

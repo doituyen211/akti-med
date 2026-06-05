@@ -6,8 +6,8 @@
 "use client";
 
 import { useCallback } from "react";
-import { useEncounterStore } from "@/store";
-import { useNotifStore } from "@/store";
+import { useEncounterStore } from "../app/store";
+import { useNotifStore } from "../app/store";
 import { runAgentCommand } from "@/lib/api";
 import { AGENT_RESPONSES } from "@/lib/constants";
 

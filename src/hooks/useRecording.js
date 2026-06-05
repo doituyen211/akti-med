@@ -6,8 +6,8 @@
 "use client";
 
 import { useRef, useCallback } from "react";
-import { useEncounterStore } from "@/store";
-import { useNotifStore } from "@/store";
+import { useEncounterStore } from "../app/store";
+import { useNotifStore } from "../app/store";
 import { uploadAudio } from "@/lib/api";
 import { DEMO_TRANSCRIPT, DEMO_SOAP } from "@/lib/constants";
 

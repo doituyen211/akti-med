@@ -5,8 +5,8 @@
 
 "use client";
 
-import { useEncounterStore } from "@/store";
-import { useNotifStore } from "@/store";
+import { useEncounterStore } from "../../app/store";
+import { useNotifStore } from "../../app/store";
 
 export default function EmergencyToggle() {
   const { isEmergencyMode, emergencyLog, toggleEmergencyMode } =

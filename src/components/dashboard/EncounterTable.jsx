@@ -4,7 +4,7 @@
 
 "use client";
 
-import Badge from "@/components/shared/Badge";
+import Badge from "../../components/shared/Bagde";
 import { STATUS_BADGE } from "@/lib/constants";
 
 const STATUS_VARIANT = {

@@ -5,11 +5,11 @@
 
 "use client";
 
-import { useEncounterStore } from "@/store";
-import { useNotifStore } from "@/store";
+import { useEncounterStore } from "../../app/store";
+import { useNotifStore } from "../../app/store";
 import { saveSoapNote, generateSoapNote } from "@/lib/api";
 import { DEMO_SOAP } from "@/lib/constants";
-import Badge from "@/components/shared/Badge";
+import Badge from "../../components/shared/Bagde";
 
 // Cấu hình 4 section SOAP
 const SOAP_SECTIONS = [
