@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserContext } from "./UserContext";
+import { useAuth } from "@/hooks/useAuth";
 
 /**
- * Top navigation bar. Displays the MediScribeAI logo, links to key pages
- * and login/logout controls based on authentication state. Active links
- * are highlighted using the current path from Next.js navigation.
+ * Top navigation bar.
+ * UI giữ theo navbar cũ.
+ * Logic auth dùng useAuth: user, isAuthenticated, logout.
  */
-export default function Navbar() {
+export default function TopNav() {
   const pathname = usePathname();
-  const { user, setUser } = useContext(UserContext);
+  const { user, isAuthenticated, logout } = useAuth();
 
   const links = [
     { href: "/", label: "Trang chủ" },
@@ -23,8 +22,8 @@ export default function Navbar() {
     { href: "/privacy", label: "Riêng tư" },
   ];
 
-  const handleLogout = () => {
-    setUser(null);
+  const isActiveLink = (href) => {
+    return pathname === href || (href !== "/" && pathname.startsWith(href));
   };
 
   return (
@@ -65,25 +64,31 @@ export default function Navbar() {
         />
         MediScribe<span style={{ color: "#ff4d8b" }}>AI</span>
       </Link>
+
       <div style={{ display: "flex", gap: 8, marginLeft: "auto" }}>
-        {links.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              padding: "8px 12px",
-              borderRadius: 8,
-              color: pathname === href ? "#0a0a0a" : "#6a6a6a",
-              background: pathname === href ? "#f5f0e0" : "transparent",
-              textDecoration: "none",
-            }}
-          >
-            {label}
-          </Link>
-        ))}
+        {links.map(({ href, label }) => {
+          const isActive = isActiveLink(href);
+
+          return (
+            <Link
+              key={href}
+              href={href}
+              style={{
+                fontSize: 14,
+                fontWeight: 500,
+                padding: "8px 12px",
+                borderRadius: 8,
+                color: isActive ? "#0a0a0a" : "#6a6a6a",
+                background: isActive ? "#f5f0e0" : "transparent",
+                textDecoration: "none",
+              }}
+            >
+              {label}
+            </Link>
+          );
+        })}
       </div>
+
       <div
         style={{
           display: "flex",
@@ -92,7 +97,7 @@ export default function Navbar() {
           marginLeft: 16,
         }}
       >
-        {!user && (
+        {!isAuthenticated && (
           <>
             <Link
               href="/login"
@@ -108,6 +113,7 @@ export default function Navbar() {
             >
               Đăng nhập
             </Link>
+
             <Link
               href="/login"
               style={{
@@ -124,13 +130,15 @@ export default function Navbar() {
             </Link>
           </>
         )}
-        {user && (
+
+        {isAuthenticated && user && (
           <>
             <span style={{ fontSize: 14, fontWeight: 500, color: "#6a6a6a" }}>
               Xin chào, <b style={{ color: "#0a0a0a" }}>{user.name}</b>
             </span>
+
             <button
-              onClick={handleLogout}
+              onClick={logout}
               style={{
                 border: "1px solid #e5e5e5",
                 borderRadius: 6,
