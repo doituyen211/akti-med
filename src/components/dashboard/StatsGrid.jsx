@@ -41,7 +41,7 @@ export default function StatsGrid({ stats }) {
           </div>
           <div
             style={{
-              fontFamily: "Sora, sans-serif",
+              fontFamily: "Space Mono, monospace",
               fontSize: 28,
               fontWeight: 700,
               color: "#0a0a0a",

@@ -674,6 +674,7 @@ function UsersSection({ onNotif }) {
                     color: "#9a9a9a",
                     padding: "8px 12px",
                     borderBottom: "1px solid #e5e5e5",
+                    fontFamily: "Space Mono, monospace",
                     textTransform: "uppercase",
                   }}
                 >
@@ -792,7 +793,7 @@ function DashHeader({ title, children }) {
     >
       <h1
         style={{
-          fontFamily: "Sora, sans-serif",
+          fontFamily: "Space Mono, monospace",
           fontSize: 28,
           fontWeight: 700,
           letterSpacing: "-0.5px",
@@ -812,6 +813,7 @@ function Card({ title, children }) {
         background: "#fff",
         border: "1px solid #e5e5e5",
         borderRadius: 16,
+        fontFamily: "Space Mono, monospace",
         overflow: "hidden",
         marginBottom: 20,
       }}

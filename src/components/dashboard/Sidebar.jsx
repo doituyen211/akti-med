@@ -25,6 +25,7 @@ export default function Sidebar({ activeKey, onNavigate, onNewEncounter }) {
         flexDirection: "column",
         gap: 4,
         minHeight: "calc(100vh - 64px)",
+        fontFamily: "Space Mono, monospace",
       }}
     >
       {/* User info block */}
@@ -43,6 +44,7 @@ export default function Sidebar({ activeKey, onNavigate, onNewEncounter }) {
             borderRadius: 9999,
             background: roleConfig?.bg || "#e5e5e5",
             color: roleConfig?.color || "#0a0a0a",
+            fontFamily: "Space Mono, monospace",
           }}
         >
           <i className={`ti ${roleConfig?.icon}`} style={{ fontSize: 11 }} />
@@ -70,6 +72,7 @@ export default function Sidebar({ activeKey, onNavigate, onNewEncounter }) {
                   color: "#9a9a9a",
                   padding: "16px 12px 6px",
                   marginTop: 8,
+                  fontFamily: "Space Mono, monospace",
                 }}
               >
                 {item.section}
@@ -118,6 +121,7 @@ function SidebarItem({ item, isActive, onClick }) {
         border: "none",
         textAlign: "left",
         background: isActive ? "#0a0a0a" : "transparent",
+        fontFamily: "Space Mono, monospace",
         color: isActive ? "#fff" : "#6a6a6a",
         transition: "all 0.15s",
       }}

@@ -69,7 +69,6 @@ export default function Footer() {
             />
             <span
               style={{
-                fontFamily: "Sora, sans-serif",
                 fontSize: 20,
                 fontWeight: 700,
                 letterSpacing: "-0.5px",

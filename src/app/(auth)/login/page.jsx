@@ -76,7 +76,6 @@ export default function LoginPage() {
             />
             <span
               style={{
-                fontFamily: "Sora, sans-serif",
                 fontSize: 18,
                 fontWeight: 700,
               }}
@@ -86,7 +85,6 @@ export default function LoginPage() {
           </div>
           <h1
             style={{
-              fontFamily: "Sora, sans-serif",
               fontSize: 32,
               fontWeight: 700,
               letterSpacing: "-0.5px",
